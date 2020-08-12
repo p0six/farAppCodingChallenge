@@ -45,7 +45,7 @@ Bootstrap(app)
 
 @app.route('/')
 def hello_world():
-    mycursor.execute("SELECT * FROM users")
+    mycursor.execute("SELECT * FROM users limit 100")
     users = mycursor.fetchall()
     return render_template('index.html', users=users)
     # users = ''
