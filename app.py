@@ -13,7 +13,7 @@ mydb = mysql.connector.connect(
   password="sl4shd0t",
   database = 'farApp'
 )
-mycursor = mydb.cursor()
+my_cursor = mydb.cursor()
 
 # response = requests.get('https://randomuser.me/api/?nat=us&results=1000')
 # for result in response.json()['results']:
@@ -45,13 +45,9 @@ Bootstrap(app)
 
 @app.route('/')
 def hello_world():
-    mycursor.execute("SELECT * FROM users limit 100")
-    users = mycursor.fetchall()
-    return render_template('index.html', users=users)
-    # users = ''
-    # for x in myresult:
-    #     users += x[1] + ',' + x[2] + ',' + x[3] + ',' + x[4] + '<br>'
-    # return(users)
+    my_cursor.execute("SELECT * FROM users order by email limit 100")
+    users = my_cursor.fetchall()
+    return render_template('body.html', users=users)
 
 
 if __name__ == '__main__':
